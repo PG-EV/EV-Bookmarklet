@@ -60,20 +60,21 @@ javascript:(function () {
             var gc = document.createElement("div");
 
             gc.style.cssText =
-                "position:fixed;" +
-                "top:20px;" +
-                "right:20px;" +
-                "z-index:999999;" +
-                "background:#fff;" +
-                "color:#333;" +
-                "padding:15px;" +
-                "border-radius:8px;" +
-                "box-shadow:0 4px 15px rgba(0,0,0,0.2);" +
-                "font-family:sans-serif;" +
-                "border:1px solid #ddd;" +
-                "display:flex;" +
-                "flex-direction:column;" +
-                "gap:10px;";
+    "position:fixed;" +
+    "top:20px;" +
+    "left:50%;" +
+    "transform:translateX(-50%);" +
+    "z-index:2147483647;" +
+    "background:#fff;" +
+    "color:#333;" +
+    "padding:15px;" +
+    "border-radius:8px;" +
+    "box-shadow:0 4px 15px rgba(0,0,0,0.2);" +
+    "font-family:sans-serif;" +
+    "border:1px solid #ddd;" +
+    "display:flex;" +
+    "flex-direction:column;" +
+    "gap:10px;";
 
             gc.innerHTML =
                 '<div style="font-weight:bold;font-size:14px;">' +
@@ -499,21 +500,22 @@ javascript:(function () {
             return;
         }
 
-        /* DocSpot */
-        if (/docspot\.com$/.test(h)) {
-            history.replaceState(
-                {},
-                "",
-                location.protocol +
-                    "//" +
-                    location.hostname +
-                    location.pathname
-            );
+       /* DocSpot */
+if (/(^|\.)docspot\.com$/.test(h)) {
+    var cleanUrl =
+        location.protocol +
+        "//" +
+        location.host +
+        location.pathname;
 
-            location.reload();
-            handled = true;
-            return;
-        }
+    if (location.href !== cleanUrl) {
+        location.replace(cleanUrl);
+    } else {
+        alert("DocSpot URL is already clean.");
+    }
+
+    return;
+}
 
         /* Default Google Place ID lookup */
         if (!handled) {
