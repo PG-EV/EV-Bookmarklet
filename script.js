@@ -501,17 +501,35 @@ javascript:(function () {
         }
 
        /* DocSpot */
-if (/(^|\.)docspot\.com$/.test(h)) {
+if (h === "docspot.com" || h.endsWith(".docspot.com")) {
     var cleanUrl =
-        location.protocol +
-        "//" +
-        location.host +
-        location.pathname;
+        location.origin +
+        location.pathname.replace(/\/+$/, "");
 
-    if (location.href !== cleanUrl) {
-        location.replace(cleanUrl);
+    if (location.search || location.hash) {
+        window.location.assign(cleanUrl);
     } else {
-        alert("DocSpot URL is already clean.");
+        var notice = document.createElement("div");
+
+        notice.style.cssText =
+            "position:fixed;" +
+            "top:20px;" +
+            "left:50%;" +
+            "transform:translateX(-50%);" +
+            "z-index:2147483647;" +
+            "background:#18181b;" +
+            "color:#fff;" +
+            "padding:10px 18px;" +
+            "border-radius:30px;" +
+            "font:500 13px system-ui,sans-serif;" +
+            "box-shadow:0 4px 12px rgba(0,0,0,.3);";
+
+        notice.textContent = "DocSpot URL is already clean";
+        document.documentElement.appendChild(notice);
+
+        setTimeout(function () {
+            notice.remove();
+        }, 1800);
     }
 
     return;
