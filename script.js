@@ -10,7 +10,7 @@ javascript:(function () {
                 open(x, "_blank", "noopener,noreferrer");
             } else {
                 alert("Error");
-            }
+            } 
         };
 
         /* Google Maps */
