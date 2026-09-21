@@ -9,4 +9,4 @@ This repository hosts the JavaScript file used by my browser bookmarklet, served
 3. Set the URL / Location to:
 
 ```javascript
-javascript:(()=>{if(window.EVREADY)return dispatchEvent(new Event("EVRUN"));let s=document.createElement("script");s.src="[https://cdn.jsdelivr.net/gh/YOUR_USERNAME/YOUR_REPO@main/script.js](https://cdn.jsdelivr.net/gh/YOUR_USERNAME/YOUR_REPO@main/script.js)";s.onload=()=>dispatchEvent(new Event("EVRUN"));document.documentElement.appendChild(s)})()
+javascript:(()=>{if(window.EVREADY)return dispatchEvent(new Event("EVRUN"));let s=document.createElement("script");s.src="https://cdn.jsdelivr.net/gh/PG-EV/EV-Bookmarklet@main/FILENAME.js";s.onload=()=>dispatchEvent(new Event("EVRUN"));document.documentElement.appendChild(s)})()
